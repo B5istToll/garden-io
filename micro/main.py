@@ -53,6 +53,20 @@ def update_status():
     return Response(status=200)
 
 
+@app.route('/api/garden/update_plant', methods=['POST'])
+def update_plant():
+    payload = request.get_json(force=True)
+    x = payload['location']['x']
+    y = payload['location']['y']
+    z = payload['location']['z']
+    plant = payload['plant']
+
+    garden = garden_logic.Garden()
+    garden.update_plant(x, y, z, plant)
+    garden.save()
+
+    return Response(status=200)
+
 @app.route('/api/garden/events')
 def get_events():
     date = request.args.get('date', '1970-01-01')

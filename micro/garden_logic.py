@@ -217,6 +217,11 @@ class Garden:
     def update_state(self, x, y, z, new_state):
         self.data['tiles'][x][y][z]['state'] = new_state
 
+    def update_plant(self, x, y, z, new_plant):
+        plants = Plants()
+        plant_info = plants.get_complete_info(new_plant)
+        self.data['tiles'][x][y][z]['plant'] = plant_info
+
     def get_tiles(self, x, y):
         """
         Get all tiles with a specific location.
