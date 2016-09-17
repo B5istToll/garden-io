@@ -26,7 +26,7 @@ module('gardenDesigner').service('backendService', function ($http, $q) {
       var oneWeekAgo = new Date();
       oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
       var isoString = oneWeekAgo.getFullYear()+'-' + (oneWeekAgo.getMonth()+1) + '-'+oneWeekAgo.getDate();//prints expected format.
-      $http.get('http://localhost:6677/api/garden/events$date=' + isoString).then(function (data) {
+      $http.get('http://localhost:6677/api/garden/events?date=' + isoString).then(function (data) {
           deferred.resolve(data);
       });
       return deferred.promise;
