@@ -78,17 +78,22 @@ Payload:
 Get a list of events that the user has to do next. Optionally a date can be given and only events after this event will be returned. The `locations` is an array containing all the tiles that are relevant for this action. 
 
 	{
-		"events": {
+		"events": [
 			{
-				"title": "Water plants", 
-				"description": "Short description of what needs to be done.", 
 				"date": "04.03.2016", 
-				"locations": [
-					{ "x": 0, "y": 1}, ...
+				"tasks": [
+					{
+						"title": "Zwiebeln giessen",
+						"location": {
+							"x": 0, 
+							"y": 0
+						}
+					}, 
+					...
 				]
 			}, 
 			...
-		}
+		]
 	}
 
 ## GET `/plants`
