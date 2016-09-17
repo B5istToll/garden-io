@@ -18,8 +18,8 @@ def create_garden(width, height, path):
 
     for h in range(0, height):
         row = []
+        plant = plants.get_plant(4)
         for w in range(0, width):
-            plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
             tile = {
                 'state': 'suggestion',

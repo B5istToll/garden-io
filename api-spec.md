@@ -65,19 +65,6 @@ Payload:
 			"state": "suggestion",
 		}
 		
-## POST `/garden/crop`
-
-Crop something on a given tile. This call will also update the proposals.
-
-Payload:
-		
-		{
-			"location": {
-				"x": 1, 
-				"y": 0
-			}
-			"crop_date": "05.05.2016"
-		}
 		
 ## GET `/garden/actions?date=03.03.2016`
 
