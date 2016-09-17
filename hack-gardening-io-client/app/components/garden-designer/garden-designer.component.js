@@ -13,6 +13,10 @@ component('gardenDesigner', {
     controller: ['$scope',
         function GardenDesignerController($scope) {
             $scope.greeting="Blahhhhhhhhhhhhh";
+            $scope.controlsMenuTemplate="components/controls-menu/controls-menu.template.html";
+
+
+
         }
     ]
 });

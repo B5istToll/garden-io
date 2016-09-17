@@ -2,9 +2,7 @@
 
     <div id="main-div" class="row">
         <div id="options-column" class="col-sm-3">
-            <uib-tabset active="active">
-                <uib-tab index="0" heading="Static title" template-url="./components/controls-menu/controls-menu.template.html">Static content</uib-tab>
-            </uib-tabset>
+            <div ng-include="controlsMenuTemplate"></div>
         </div>
         <div id="grid-column" class="col-sm-6">
 
