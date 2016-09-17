@@ -18,105 +18,105 @@
             "name": "Kartoffeln",
             "plant": [3,4,5,6,7],
             "duration": 11,
-            "type": "Wurzelgemüse",
+            "type": "Wurzelgemuese",
             "watering": "weekly"
         },
         {
             "name": "Möhren",
             "plant": [2,3,4,5,6],
             "duration": 14,
-            "type": "Wurzelgemüse",
+            "type": "Wurzelgemuese",
             "watering": "weekly"
         },
         {
             "name": "Radieschen",
             "plant": [3,4,5,6,7,8],
             "duration": 8,
-            "type": "Wurzelgemüse",
+            "type": "Wurzelgemuese",
             "watering": "weekly"
         },
         {
             "name": "Rote Bete",
             "plant": [5,6,7,8],
             "duration": 18,
-            "type": "Wurzelgemüse",
+            "type": "Wurzelgemuese",
             "watering": "weekly"
         },
         {
             "name": "Feldsalat",
             "plant": [7,8],
             "duration": 8,
-            "type": "Blattgemüse",
+            "type": "Blattgemuese",
             "watering": "weekly"
         },
         {
             "name": "Auberginen",
             "plant": [3,4,5,6],
             "duration": 14,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
-            "name": "Kürbis",
+            "name": "Kuerbis",
             "plant": [5,6],
             "duration": 10,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
             "name": "Zucchini",
             "plant": [3,4,5,6],
             "duration": 8,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
             "name": "Peperoni",
             "plant": [3,4,5,6],
             "duration": 10,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
             "name": "Tomaten",
             "plant": [5,6],
             "duration": 10,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
             "name": "Zuckermais",
             "plant": [5,6],
             "duration": 14,
-            "type": "Fruchtgemüse",
+            "type": "Fruchtgemuese",
             "watering": "weekly"
         },
         {
             "name": "Lauch",
             "plant": [3,4,5,6,7],
             "duration": 12,
-            "type": "Zwiebel- und Lauchgewächse",
+            "type": "Zwiebel- und Lauchgewaechse",
             "watering": "weekly"
         },
         {
             "name": "Zwiebeln",
             "plant": [3,4],
             "duration": 14,
-            "type": "Zwiebel- und Lauchgewächse",
+            "type": "Zwiebel- und Lauchgewaechse",
             "watering": "weekly"
         },
         {
             "name": "Knoblauch",
             "plant": [3,4],
             "duration": 18,
-            "type": "Zwiebel- und Lauchgewächse",
+            "type": "Zwiebel- und Lauchgewaechse",
             "watering": "weekly"
         },
         {
             "name": "Weisser Spargel",
             "plant": [3,4,5,6],
             "duration": 10,
-            "type": "Ausdauernde Gemüsearten",
+            "type": "Ausdauernde Gemuesearten",
             "watering": "weekly"
         }
     ]
