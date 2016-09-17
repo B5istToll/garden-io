@@ -69,6 +69,11 @@ class Utility:
 
         return end1 > start2
 
+    @staticmethod
+    def sort_tiles(tiles):
+        sorted_tiles = sorted(tiles, key=lambda x: datetime.strptime(x['plant_date'], Utility.date_format))
+        return sorted_tiles
+
 
 class Garden:
     """
@@ -95,23 +100,25 @@ class Garden:
         # Remove all plants during that time frame.
         relevant_tiles = self.get_tiles(x, y)
         # Check if these tiles collide with the new planted plant.
+        new_tiles = []
         for tile in relevant_tiles:
-            if Utility.dates_collide(date, plant_crop_date, tile['plant_date'], tile['crop_date']):
-                self.data['tiles'].remove(tile)
+            if not Utility.dates_collide(date, plant_crop_date, tile['plant_date'], tile['crop_date']):
+                new_tiles.append(tile)
 
         # And finally insert the new plant.
-        self.data['tiles'].append({
-                'location': {
-                    'x': x,
-                    'y': y
-                },
-                'plant': plant_info,
-                'plant_date': date,
-                'crop_date': plant_crop_date,
-                'duration': plant_info['duration'],
-                'proposal': False,
-                'cropped': False
-            })
+        new_tiles.append({
+            'plant': plant_info,
+            'plant_date': date,
+            'crop_date': plant_crop_date,
+            'duration': plant_info['duration'],
+            'proposal': False,
+            'cropped': False
+        })
+        new_tiles = Utility.sort_tiles(new_tiles)
+
+
+        self.data['tiles'][x][y] = new_tiles
+
 
     def crop(self, x, y, crop_date):
         """
@@ -128,8 +135,7 @@ class Garden:
         """
         Get all tiles with a specific location.
         """
-        valid_tiles = filter(lambda tile: tile['location']['x'] == x and tile['location']['y'] == y, self.data['tiles'])
-        return list(valid_tiles)[0]['plants']
+        return self.data['tiles'][x][y]
 
 
 class Plants:
