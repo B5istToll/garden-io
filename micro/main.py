@@ -1,7 +1,7 @@
 import os
 from os import unlink
 
-from flask import Flask
+from flask import Flask, Response
 from flask import request
 from flask import json
 from flask import jsonify
@@ -49,6 +49,8 @@ def plant():
     garden = garden_logic.Garden()
     garden.plant(x, y, plant_name, plant_date)
     garden.save()
+
+    return Response(status=200)
 
 
 

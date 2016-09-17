@@ -54,10 +54,11 @@ class Utility:
     @staticmethod
     def dates_collide(start1, end1, start2, end2):
 
-        start1 = datetime.strptime(Utility.date_format, start1)
-        end1 = datetime.strptime(Utility.date_format, end1)
-        start2 = datetime.strptime(Utility.date_format, start2)
-        end2 = datetime.strptime(Utility.date_format, end2)
+
+        start1 = datetime.strptime(start1, Utility.date_format)
+        end1 = datetime.strptime(end1, Utility.date_format)
+        start2 = datetime.strptime(start2, Utility.date_format)
+        end2 = datetime.strptime(end2, Utility.date_format)
 
         # Let's order them first
         if start2 > start1:
