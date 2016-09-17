@@ -38,16 +38,16 @@ def get_garden():
     return jsonify(garden_data)
 
 
-@app.route('/api/garden/plant', methods=['POST'])
-def plant():
+@app.route('/api/garden/update', methods=['POST'])
+def update_status():
     payload = request.get_json(force=True)
     x = payload['location']['x']
     y = payload['location']['y']
-    plant_name = payload['plant']
-    plant_date = payload['plant_date']
+    z = payload['location']['z']
+    state = payload['state']
 
     garden = garden_logic.Garden()
-    garden.plant(x, y, plant_name, plant_date)
+    garden.update_state(x, y, z, state)
     garden.save()
 
     return Response(status=200)
@@ -58,20 +58,6 @@ def get_events():
     date = request.args.get('date', '01.01.1970')
     garden = garden_logic.Garden()
     return jsonify(garden.generate_events(date))
-
-
-@app.route('/api/garden/crop', methods=['POST'])
-def crop():
-    payload = request.get_json(force=True)
-    x = payload['location']['x']
-    y = payload['location']['y']
-    crop_date = payload['crop_date']
-
-    garden = garden_logic.Garden()
-    garden.crop(x, y, crop_date)
-    garden.save()
-
-    return Response(status=200)
 
 
 

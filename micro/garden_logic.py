@@ -22,8 +22,7 @@ def create_garden(width, height, path):
             plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
             tile = {
-                'proposal': True,
-                'cropped': False,
+                'state': 'suggestion',
                 'plant_date': plant_date,
                 'crop_date': crop_date,
                 'duration': plant['duration'],
@@ -167,45 +166,8 @@ class Garden:
         with open(self.data_path, 'w') as f:
             json.dump(self.data, f)
 
-    def plant(self, x, y, plant_name, date):
-        """
-        Plant a plant at a given location and date.
-        """
-        plants = Plants()
-        plant_info = plants.get_complete_info(plant_name)
-        plant_crop_date = plants.get_crop_date(plant_info, date)
-
-        # Remove all plants during that time frame.
-        relevant_tiles = self.get_tiles(x, y)
-        # Check if these tiles collide with the new planted plant.
-        new_tiles = []
-        for tile in relevant_tiles:
-            if not Utility.dates_collide(date, plant_crop_date, tile['plant_date'], tile['crop_date']):
-                new_tiles.append(tile)
-
-        # And finally insert the new plant.
-        new_tiles.append({
-            'plant': plant_info,
-            'plant_date': date,
-            'crop_date': plant_crop_date,
-            'duration': plant_info['duration'],
-            'proposal': False,
-            'cropped': False
-        })
-        new_tiles = Utility.sort_tiles(new_tiles)
-
-        self.data['tiles'][x][y] = new_tiles
-
-    def crop(self, x, y, crop_date):
-        """
-        Crop the currently planted plant at the given location.
-        """
-
-        for tile in self.data['tiles'][x][y]:
-            if not tile['proposal']:
-                tile['cropped'] = True
-                tile['crop_date'] = crop_date
-                break
+    def update_state(self, x, y, z, new_state):
+        self.data['tiles'][x][y][z]['state'] = new_state
 
     def get_tiles(self, x, y):
         """

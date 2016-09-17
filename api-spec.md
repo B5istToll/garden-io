@@ -44,19 +44,25 @@ Get the current state of the garden. If a tile is empty there will be no tile ob
 - `tiles.duration`: The duration that is planned that the plant needs to grow. 
 - `tiles.proposal`: Wheter this tile is proposal or if it is already confirmed by the user.
 
-## POST `/garden/plant`
+## POST `/garden/update`
 
-Plant a plant in a given location. The plant is identified by its name. This call will also update proposals. 
+Update the state of a plant. State can be one of the following:
+
+- `suggestion`
+- `scheduled`
+- `in_progress`
+- `ready_to_harvest`
+- `harvested`
 
 Payload: 
 
 		{
 			"location": {
 				"x": 0, 
-				"y": 0
+				"y": 0, 
+				"z": 0,
 			},
-			"plant": "Rhabarber",
-			"plant_date": "04.03.2016"
+			"state": "suggestion",
 		}
 		
 ## POST `/garden/crop`
