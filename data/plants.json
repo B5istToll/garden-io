@@ -1,0 +1,220 @@
+{
+    "plants": [
+        {
+            "name": "Brokkoli", 
+            "plant": [4,5,6,7], 
+            "duration": 7,
+            "type": "Kohl"
+        }, 
+        {
+            "name": "Blumenkohl", 
+            "plant": [4,5,6,7], 
+            "duration": 10,
+            "type": "Kohl"
+        },
+        {
+            "name": "Kohlrabi", 
+            "plant": [3,4,5,6,7], 
+            "duration": 11,
+            "type": "Kohl"
+        },
+        {
+            "name": "Weisskohl", 
+            "plant": [3,4,5,6], 
+            "duration": 14,
+            "type": "Kohl"
+        },
+        {
+            "name": "Rotkohl", 
+            "plant": [3,4,5,6], 
+            "duration": 14,
+            "type": "Kohl"
+        },
+        {
+            "name": "Kartoffeln", 
+            "plant": [3,4,5,6,7], 
+            "duration": 11,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Knollensellerie", 
+            "plant": [5,6,7], 
+            "duration": 20,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Möhren", 
+            "plant": [2,3,4,5,6], 
+            "duration": 14,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Radieschen", 
+            "plant": [3,4,5,6,7,8], 
+            "duration": 8,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Rote Bete", 
+            "plant": [5,6,7,8], 
+            "duration": 18,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Speiserüben", 
+            "plant": [3,5,7,8], 
+            "duration": 8,
+            "type": "Wurzelgemüse"
+        },
+        {
+            "name": "Endivie", 
+            "plant": [4,5,6,7], 
+            "duration": 12,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Feldsalat", 
+            "plant": [7,8], 
+            "duration": 8,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Knollenfenchel", 
+            "plant": [6,7], 
+            "duration": 14,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Kopfsalat", 
+            "plant": [3,4,5,6,7], 
+            "duration": 12,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Mangold", 
+            "plant": [4,5,6,7], 
+            "duration": 12,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Eichblatt Salat", 
+            "plant": [3,4,5,6,7,8], 
+            "duration": 6,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Spinat", 
+            "plant": [3,4,5,6,7], 
+            "duration": 8,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Zuckerhut", 
+            "plant": [6], 
+            "duration": 10,
+            "type": "Blattgemüse"
+        },
+        {
+            "name": "Auberginen", 
+            "plant": [3,4,5,6], 
+            "duration": 14,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Gurken", 
+            "plant": [4,5,6], 
+            "duration": 10,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Kürbis", 
+            "plant": [5,6], 
+            "duration": 10,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Zucchini", 
+            "plant": [3,4,5,6], 
+            "duration": 8,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Paprika", 
+            "plant": [3,4,5,6], 
+            "duration": 10,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Peperoni", 
+            "plant": [3,4,5,6], 
+            "duration": 10,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Tomaten", 
+            "plant": [5,6], 
+            "duration": 10,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Zuckermais", 
+            "plant": [5,6], 
+            "duration": 14,
+            "type": "Fruchtgemüse"
+        },
+        {
+            "name": "Buschbohnen", 
+            "plant": [5,6,7], 
+            "duration": 8,
+            "type": "Hülsenfrüchte"
+        },
+        {
+            "name": "Markerbsen", 
+            "plant": [3,4,5,6,7], 
+            "duration": 10,
+            "type": "Hülsenfrüchte"
+        },
+        {
+            "name": "Stangenbohnen", 
+            "plant": [4,5,6], 
+            "duration": 10,
+            "type": "Hülsenfrüchte"
+        },
+        {
+            "name": "Lauch", 
+            "plant": [3,4,5,6,7], 
+            "duration": 12,
+            "type": "Zwiebel- und Lauchgewächse"
+        },
+        {
+            "name": "Zwiebeln", 
+            "plant": [3,4], 
+            "duration": 14,
+            "type": "Zwiebel- und Lauchgewächse"
+        },
+        {
+            "name": "Knoblauch", 
+            "plant": [3,4], 
+            "duration": 18,
+            "type": "Zwiebel- und Lauchgewächse"
+        },
+        {
+            "name": "Artischocken", 
+            "plant": [3,4,5,6], 
+            "duration": 14,
+            "type": "Ausdauernde Gemüsearten"
+        },
+        {
+            "name": "Weisser Spargel", 
+            "plant": [3,4,5,6], 
+            "duration": 10,
+            "type": "Ausdauernde Gemüsearten"
+        },
+        {
+            "name": "Rhabarber", 
+            "plant": [3,4,5,6,7], 
+            "duration": 8,
+            "type": "Ausdauernde Gemüsearten"
+        }
+    ]
+}
