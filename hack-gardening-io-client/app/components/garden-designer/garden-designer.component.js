@@ -48,7 +48,7 @@ component('gardenDesigner', {
                 if (name == 'Zwiebeln') return "components/img/zwiebeln.png";
                 if (name == 'Knoblauch') return "components/img/knoblauch.png";
                 if (name == 'Weisser Spargel') return "components/img/spargel.png";
-            }
+            };
 
             $scope.events = {}
             var promise3 = backendService.getEvents();
@@ -101,6 +101,7 @@ component('gardenDesigner', {
                     mode = data.mode;
                 return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
             }
+
 
             // ------------------------------------------------
 

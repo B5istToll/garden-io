@@ -55,7 +55,7 @@ def update_status():
 
 @app.route('/api/garden/events')
 def get_events():
-    date = request.args.get('date', '01.01.1970')
+    date = request.args.get('date', '1970-01-01')
     garden = garden_logic.Garden()
     return jsonify(garden.generate_events(date))
 
