@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "plants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "plant": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "duration": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "watering": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "plant",
+          "duration",
+          "type",
+          "watering"
+        ]
+      }
+    }
+  },
+  "required": [
+    "plants"
+  ]
+}
