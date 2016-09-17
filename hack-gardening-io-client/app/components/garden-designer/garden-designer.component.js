@@ -20,26 +20,26 @@ component('gardenDesigner', {
             var promise = backendService.getPlants();
             promise.then(function (data) {
                 $scope.plants = data;
-                console.log(data);
+                //console.log(data);
             });
 
             $scope.garden = {};
             var promise2 = backendService.getGarden();
             promise2.then(function (data) {
                 $scope.garden = data;
-                console.log($scope.garden.data.tiles);
+                //console.log($scope.garden.data.tiles);
             });
 
             $scope.getImgPath = function (name) {
                 if (name == 'Brokkoli') return "components/img/brokkoli.png";
                 if (name == 'Rotkohl') return "components/img/rotkohl.png";
                 if (name == 'Kartoffeln') return "components/img/kartoffel.png";
-                if (name == 'Möhren') return "components/img/moehre.png";
+                if (name == 'Moehren') return "components/img/moehre.png";
                 if (name == 'Radieschen') return "components/img/radieschen.png";
                 if (name == 'Rote Beete') return "components/img/rotebeete.png";
                 if (name == 'Feldsalat') return "components/img/feldsalat.png";
                 if (name == 'Auberginen') return "components/img/auberginen.png";
-                if (name == 'Kürbis') return "components/img/kuerbis.png";
+                if (name == 'Kuerbis') return "components/img/kuerbis.png";
                 if (name == 'Zucchini') return "components/img/zucchini.png";
                 if (name == 'Peperoni') return "components/img/peperoni.png";
                 if (name == 'Tomaten') return "components/img/tomaten.png";
@@ -60,15 +60,12 @@ component('gardenDesigner', {
               console.log(dateString);
               for (var i = 0; i < $scope.events.data.length; i++) {
                 if ($scope.events.data[i].date.replace('/-','/') < dateString){
-                  console.log("danger");
                   $scope.events.data[i].rowClass = "danger";
                 }
                 else if ($scope.events.data[i].date.replace('/-','/') == dateString){
-                  console.log("success");
                   $scope.events.data[i].rowClass = "success";
                 }
                 else {
-                  console.log("normal");
                   $scope.events.data[i].rowClass = "";
                 }
               }
@@ -77,6 +74,15 @@ component('gardenDesigner', {
 
             $scope.getRowClass = function(event) {
               return event.rowClass;
+            };
+
+            $scope.getRainAmount = function(event) {
+              if (event.rain_amount == undefined) {
+                return "";
+              }
+              else {
+                return event.rain_amount + "mm";
+              }
             }
 
             // Date Picker ------------------------------------------------

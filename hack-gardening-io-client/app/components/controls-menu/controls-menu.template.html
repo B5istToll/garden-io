@@ -24,10 +24,13 @@
                       <table class="table table-striped">
                         <tbody>
                           <tr ng-repeat="row in events.data" ng-class="getRowClass(row)">
-                            <td>{{row.date}}</td>
                             <td>
-                              {{row.rowClass}}
-                            </td>
+                              <div>
+                                {{row.date}}
+                              </div>
+                            <div>
+                              {{getRainAmount(row)}}
+                            </div></td>
                             <td>
                               <div ng-repeat="task in row.tasks">
                                 {{task.title}}
