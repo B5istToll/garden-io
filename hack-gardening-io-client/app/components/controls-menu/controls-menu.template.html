@@ -1,0 +1,30 @@
+<div>
+    <h1 style="">garden.io</h1>
+    <uib-tabset active="active" justified="true">
+        <uib-tab index="0" heading="Garden Profile">
+            <div class="content-of-tab">
+                <div class="col-sm-6">
+                    Name:<br>
+                    Location:<br>
+                    Lenght (m):<br>
+                    Width (m):<br>
+                </div>
+                <div class="col-sm-6">
+                    Eden<br>
+                    Zurich<br>
+                    {{garden.data.size.height}}<br>
+                    {{garden.data.size.width}}<br>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Plants">
+            <div class="content-of-tab">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Basic panel example
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>
