@@ -55,7 +55,6 @@ class Utility:
     @staticmethod
     def dates_collide(start1, end1, start2, end2):
 
-
         start1 = datetime.strptime(start1, Utility.date_format)
         end1 = datetime.strptime(end1, Utility.date_format)
         start2 = datetime.strptime(start2, Utility.date_format)
@@ -114,7 +113,6 @@ class Plants:
         return self.get_plant(month)
 
 
-
     def get_complete_info(self, plant_name):
         valid_plants = filter(lambda x: x['name'] == plant_name, self.plants)
         return list(valid_plants)[0]
@@ -152,6 +150,11 @@ class Plants:
         """
         Get all the watering events.
         """
+
+        # We want the watering events only if it is scheduled.
+        if plant['state'] not in ['scheduled', 'in_progress']:
+            return []
+
         delay_table = {
             'monthly': 28,
             'weekly': 7,
@@ -167,7 +170,7 @@ class Plants:
         while next_watering < end_date:
             events.append({
                 'date': next_watering.strftime(Utility.date_format),
-                'title': 'Water %s' % plant['plant']['name']
+                'title': 'Water %s' % plant['plant']['name'],
             })
 
             next_watering = next_watering + delta
@@ -233,7 +236,7 @@ class Garden:
                 for tile in plants:
 
                     # Plant event
-                    if tile['proposal']:
+                    if tile['state'] == 'scheduled':
                         # Add a plant event
                         events.append({
                             'date': tile['plant_date'],
@@ -245,7 +248,7 @@ class Garden:
                         })
 
                     # Crop event
-                    if not tile['proposal'] and not tile['cropped']:
+                    if tile['state'] in ['scheduled', 'in_progress', 'ready_to_harvest']:
                         events.append({
                             'date': tile['crop_date'],
                             'title': 'Crop %s' % tile['plant']['name'],
