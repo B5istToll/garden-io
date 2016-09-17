@@ -1,256 +1,123 @@
 {
     "plants": [
         {
-            "name": "Brokkoli", 
-            "plant": [4,5,6,7], 
+            "name": "Brokkoli",
+            "plant": [4,5,6,7],
             "duration": 7,
             "type": "Kohl",
             "watering": "weekly"
-        }, 
-        {
-            "name": "Blumenkohl", 
-            "plant": [4,5,6,7], 
-            "duration": 10,
-            "type": "Kohl",
-            "watering": "weekly"
         },
         {
-            "name": "Kohlrabi", 
-            "plant": [3,4,5,6,7], 
-            "duration": 11,
-            "type": "Kohl",
-            "watering": "weekly"
-        },
-        {
-            "name": "Weisskohl", 
-            "plant": [3,4,5,6], 
+            "name": "Rotkohl",
+            "plant": [3,4,5,6],
             "duration": 14,
             "type": "Kohl",
             "watering": "weekly"
         },
         {
-            "name": "Rotkohl", 
-            "plant": [3,4,5,6], 
-            "duration": 14,
-            "type": "Kohl",
-            "watering": "weekly"
-        },
-        {
-            "name": "Kartoffeln", 
-            "plant": [3,4,5,6,7], 
+            "name": "Kartoffeln",
+            "plant": [3,4,5,6,7],
             "duration": 11,
             "type": "Wurzelgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Knollensellerie", 
-            "plant": [5,6,7], 
-            "duration": 20,
-            "type": "Wurzelgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Möhren", 
-            "plant": [2,3,4,5,6], 
+            "name": "Möhren",
+            "plant": [2,3,4,5,6],
             "duration": 14,
             "type": "Wurzelgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Radieschen", 
-            "plant": [3,4,5,6,7,8], 
+            "name": "Radieschen",
+            "plant": [3,4,5,6,7,8],
             "duration": 8,
             "type": "Wurzelgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Rote Bete", 
-            "plant": [5,6,7,8], 
+            "name": "Rote Bete",
+            "plant": [5,6,7,8],
             "duration": 18,
             "type": "Wurzelgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Speiserüben", 
-            "plant": [3,5,7,8], 
-            "duration": 8,
-            "type": "Wurzelgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Endivie", 
-            "plant": [4,5,6,7], 
-            "duration": 12,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Feldsalat", 
-            "plant": [7,8], 
+            "name": "Feldsalat",
+            "plant": [7,8],
             "duration": 8,
             "type": "Blattgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Knollenfenchel", 
-            "plant": [6,7], 
-            "duration": 14,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Kopfsalat", 
-            "plant": [3,4,5,6,7], 
-            "duration": 12,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Mangold", 
-            "plant": [4,5,6,7], 
-            "duration": 12,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Eichblatt Salat", 
-            "plant": [3,4,5,6,7,8], 
-            "duration": 6,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Spinat", 
-            "plant": [3,4,5,6,7], 
-            "duration": 8,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Zuckerhut", 
-            "plant": [6], 
-            "duration": 10,
-            "type": "Blattgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Auberginen", 
-            "plant": [3,4,5,6], 
+            "name": "Auberginen",
+            "plant": [3,4,5,6],
             "duration": 14,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Gurken", 
-            "plant": [4,5,6], 
+            "name": "Kürbis",
+            "plant": [5,6],
             "duration": 10,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Kürbis", 
-            "plant": [5,6], 
-            "duration": 10,
-            "type": "Fruchtgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Zucchini", 
-            "plant": [3,4,5,6], 
+            "name": "Zucchini",
+            "plant": [3,4,5,6],
             "duration": 8,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Paprika", 
-            "plant": [3,4,5,6], 
+            "name": "Peperoni",
+            "plant": [3,4,5,6],
             "duration": 10,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Peperoni", 
-            "plant": [3,4,5,6], 
+            "name": "Tomaten",
+            "plant": [5,6],
             "duration": 10,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Tomaten", 
-            "plant": [5,6], 
-            "duration": 10,
-            "type": "Fruchtgemüse",
-            "watering": "weekly"
-        },
-        {
-            "name": "Zuckermais", 
-            "plant": [5,6], 
+            "name": "Zuckermais",
+            "plant": [5,6],
             "duration": 14,
             "type": "Fruchtgemüse",
             "watering": "weekly"
         },
         {
-            "name": "Buschbohnen", 
-            "plant": [5,6,7], 
-            "duration": 8,
-            "type": "Hülsenfrüchte",
-            "watering": "weekly"
-        },
-        {
-            "name": "Markerbsen", 
-            "plant": [3,4,5,6,7], 
-            "duration": 10,
-            "type": "Hülsenfrüchte",
-            "watering": "weekly"
-        },
-        {
-            "name": "Stangenbohnen", 
-            "plant": [4,5,6], 
-            "duration": 10,
-            "type": "Hülsenfrüchte",
-            "watering": "weekly"
-        },
-        {
-            "name": "Lauch", 
-            "plant": [3,4,5,6,7], 
+            "name": "Lauch",
+            "plant": [3,4,5,6,7],
             "duration": 12,
             "type": "Zwiebel- und Lauchgewächse",
             "watering": "weekly"
         },
         {
-            "name": "Zwiebeln", 
-            "plant": [3,4], 
+            "name": "Zwiebeln",
+            "plant": [3,4],
             "duration": 14,
             "type": "Zwiebel- und Lauchgewächse",
             "watering": "weekly"
         },
         {
-            "name": "Knoblauch", 
-            "plant": [3,4], 
+            "name": "Knoblauch",
+            "plant": [3,4],
             "duration": 18,
             "type": "Zwiebel- und Lauchgewächse",
             "watering": "weekly"
         },
         {
-            "name": "Artischocken", 
-            "plant": [3,4,5,6], 
-            "duration": 14,
-            "type": "Ausdauernde Gemüsearten",
-            "watering": "weekly"
-        },
-        {
-            "name": "Weisser Spargel", 
-            "plant": [3,4,5,6], 
+            "name": "Weisser Spargel",
+            "plant": [3,4,5,6],
             "duration": 10,
             "type": "Ausdauernde Gemüsearten",
             "watering": "weekly"
         },
-        {
-            "name": "Rhabarber", 
-            "plant": [3,4,5,6,7], 
-            "duration": 8,
-            "type": "Ausdauernde Gemüsearten",
-            "watering": "weekly"
-        }
     ]
 }
