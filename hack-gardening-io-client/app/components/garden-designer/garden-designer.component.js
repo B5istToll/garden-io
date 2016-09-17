@@ -51,6 +51,11 @@ component('gardenDesigner', {
 
             // Date Picker ------------------------------------------------
 
+            $scope.today = function() {
+                $scope.dt = new Date();
+            };
+            $scope.today();
+            
             $scope.datepopup = {
                 opened: false
             };
@@ -60,7 +65,7 @@ component('gardenDesigner', {
             };
 
             $scope.dateOptions = {
-                dateDisabled: disabled,
+                //dateDisabled: disabled,
                 formatYear: 'yy',
                 maxDate: new Date(2020, 5, 22),
                 minDate: new Date(),
