@@ -43,10 +43,12 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
             console.log("Dates. Current: ", $scope.currentDate, "  Harvest: ", $scope.harvestDate);
             $scope.abort = true;
             $scope.progressBar = true;
-            $scope.progress = ($scope.currentDate - $scope.seedDate) / ($scope.harvestDate - $scope.seedDate);
+            var daysElapsed = ($scope.currentDate - $scope.seedDate)/1000/60/60/24;
+            var daysToGrow = ($scope.harvestDate - $scope.seedDate)/1000/60/60/24;
+            $scope.progress = daysElapsed/daysToGrow*100;
             console.log("Fortschritt: ",$scope.progress);
-            console.log("Schon vergangen: ",($scope.currentDate - $scope.seedDate)/1000/60/60/24);
-            console.log("Tage insgesamt: ",($scope.harvestDate - $scope.seedDate)/1000/60/60/24);
+            console.log("Schon vergangen: ",daysElapsed);
+            console.log("Tage insgesamt: ",daysToGrow);
         } else if ($scope.plantState = 'ready_to_harvest') {
             $scope.yield = true;
         }

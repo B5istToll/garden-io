@@ -34,12 +34,12 @@ component('gardenDesigner', {
                 if (name == 'Brokkoli') return "components/img/brokkoli.png";
                 if (name == 'Rotkohl') return "components/img/rotkohl.png";
                 if (name == 'Kartoffeln') return "components/img/kartoffel.png";
-                if (name == 'Möhren') return "components/img/moehre.png";
+                if (name == 'Moehren') return "components/img/moehre.png";
                 if (name == 'Radieschen') return "components/img/radieschen.png";
                 if (name == 'Rote Beete') return "components/img/rotebeete.png";
                 if (name == 'Feldsalat') return "components/img/feldsalat.png";
                 if (name == 'Auberginen') return "components/img/auberginen.png";
-                if (name == 'Kürbis') return "components/img/kuerbis.png";
+                if (name == 'Kuerbis') return "components/img/kuerbis.png";
                 if (name == 'Zucchini') return "components/img/zucchini.png";
                 if (name == 'Peperoni') return "components/img/peperoni.png";
                 if (name == 'Tomaten') return "components/img/tomaten.png";
