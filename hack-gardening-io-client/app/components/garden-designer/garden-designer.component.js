@@ -14,6 +14,7 @@ component('gardenDesigner', {
         function GardenDesignerController($scope, backendService) {
             $scope.greeting="Blahhhhhhhhhhhhh";
             $scope.controlsMenuTemplate="components/controls-menu/controls-menu.template.html";
+            $scope.gardenGridTemplate="components/garden-grid/garden-grid.template.html";
 
             $scope.plants = {};
             var promise = backendService.getPlants();
@@ -55,7 +56,7 @@ component('gardenDesigner', {
                 $scope.dt = new Date();
             };
             $scope.today();
-            
+
             $scope.datepopup = {
                 opened: false
             };

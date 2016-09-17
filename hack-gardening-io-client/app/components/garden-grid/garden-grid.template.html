@@ -1,0 +1,11 @@
+<div class="container" style="height: 100%">
+  <table id="garden-table" class="table-bordered" style="width:100%; height:100%;">
+       <tr ng-repeat="row in garden.data.tiles">
+
+
+         <td ng-repeat="column in row">
+           <plant-unit name="column[0].plant.name" img="getImgPath(column[0].plant.name)"></plant-unit>
+         </td>
+       </tr>
+     </table>
+</div>
