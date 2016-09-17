@@ -17,14 +17,11 @@ def create_garden(width, height, path):
     tiles = []
 
     for h in range(0, height):
+        row = []
         for w in range(0, width):
             plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
             tile = {
-                'location': {
-                    'x': w,
-                    'y': h
-                },
                 'proposal': True,
                 'cropped': False,
                 'plant_date': plant_date,
@@ -32,7 +29,8 @@ def create_garden(width, height, path):
                 'duration': plant['duration'],
                 'plant': plant
             }
-            tiles.append(tile)
+            row.append([tile])
+        tiles.append(row)
 
     data = {
         'size': {
@@ -41,7 +39,6 @@ def create_garden(width, height, path):
         },
         'tiles': tiles
     }
-    print(data)
 
     # Write it to the given path
     with open(path, 'w') as f:
@@ -132,7 +129,7 @@ class Garden:
         Get all tiles with a specific location.
         """
         valid_tiles = filter(lambda tile: tile['location']['x'] == x and tile['location']['y'] == y, self.data['tiles'])
-        return list(valid_tiles)
+        return list(valid_tiles)[0]['plants']
 
 
 class Plants:
