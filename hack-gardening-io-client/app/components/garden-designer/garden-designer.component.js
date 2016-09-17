@@ -27,7 +27,7 @@ component('gardenDesigner', {
             var promise2 = backendService.getGarden();
             promise2.then(function (data) {
                 $scope.garden = data;
-                console.log($scope.garden.data);
+                console.log($scope.garden);
             });
 
             
