@@ -52,6 +52,14 @@ def plant():
 
     return Response(status=200)
 
+
+@app.route('/api/garden/events')
+def get_events():
+    date = request.args.get('date', '01.01.1970')
+    garden = garden_logic.Garden()
+    return jsonify(garden.generate_events(date))
+
+
 @app.route('/api/garden/crop', methods=['POST'])
 def crop():
     payload = request.get_json(force=True)

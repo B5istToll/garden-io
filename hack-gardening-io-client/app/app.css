@@ -33,3 +33,10 @@
   height: 100vh;
   padding: 10px;
 }
+.plant-tile {
+  width: 80px;
+  height: 80px;
+  border-color: #0f0f0f;
+  border-width: 2px;
+  background-color: #00b3ee;
+}
