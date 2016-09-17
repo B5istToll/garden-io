@@ -116,6 +116,17 @@ class Garden:
                 'cropped': False
             })
 
+    def crop(self, x, y, crop_date):
+        """
+        Crop the currently planted plant at the given location.
+        """
+        relevant_tiles = self.get_tiles(x, y)
+        planted_tile = list(filter(lambda tile: tile['proposal'] == False, relevant_tiles))[0]
+        self.data['tiles'].remove(planted_tile)
+        planted_tile['cropped'] = True
+        planted_tile['crop_date'] = crop_date
+        self.data['tiles'].append(planted_tile)
+
     def get_tiles(self, x, y):
         """
         Get all tiles with a specific location.

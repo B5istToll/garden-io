@@ -52,6 +52,19 @@ def plant():
 
     return Response(status=200)
 
+@app.route('/api/garden/crop', methods=['POST'])
+def crop():
+    payload = request.get_json(force=True)
+    x = payload['location']['x']
+    y = payload['location']['y']
+    crop_date = payload['crop_date']
+
+    garden = garden_logic.Garden()
+    garden.crop(x, y, crop_date)
+    garden.save()
+
+    return Response(status=200)
+
 
 
 @app.after_request
