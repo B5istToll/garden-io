@@ -36,4 +36,50 @@ Get the current state of the garden. If a tile is empty there will be no tile ob
 - `tiles.plant_date`: The date when this plant was planted.
 - `tiles.crop_date`: The estimated crop date based on the duration and plant_date. 
 - `tiles.duration`: The duration that is planned that the plant needs to grow. 
-- `tiles.proposal`: Wheter this tile is proposal or if it is already confirmed by the user. 
+- `tiles.proposal`: Wheter this tile is proposal or if it is already confirmed by the user.
+
+## POST `/garden/plant`
+
+Plant a plant in a given location. The plant is identified by its name. This call will also update proposals. 
+
+Payload: 
+
+		{
+			"location": {
+				"x": 0, 
+				"y": 0
+			},
+			"plant": "Rhabarber",
+			"plant_date": "04.03.2016"
+		}
+		
+## POST `/garden/crop`
+
+Crop something on a given tile. This call will also update the proposals.
+
+Payload:
+		
+		{
+			"location": {
+				"x": 1, 
+				"y": 0
+			}
+			"crop_date": "05.05.2016"
+		}
+
+## GET `/plants`
+
+Get information about all plants. 
+
+	{
+	"plants": [
+        {
+            "name": "Brokkoli", 
+            "plant": [4,5,6,7], 
+            "duration": 7,
+            "type": "Kohl", 
+            "watering": "weekly"
+        }, 
+        ...
+    }
+
