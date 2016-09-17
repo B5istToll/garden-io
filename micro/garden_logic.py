@@ -130,7 +130,7 @@ class Plants:
         Tries to find a plant that follows to the given tile.
         """
         harvest_date = tile['crop_date']
-        day, month, year = harvest_date.split('-')
+        year, month, day = harvest_date.split('-')
         month = int(month) + 1
         return self.get_plant(month)
 
@@ -155,7 +155,7 @@ class Plants:
 
     def get_crop_date(self, plant, plant_date):
 
-        day, month, year = plant_date.split('-')
+        year, month, day = plant_date.split('-')
 
         # Calculate crop date
         crop_day_total = int(day) + plant['duration'] * 7
