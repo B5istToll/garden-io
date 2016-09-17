@@ -1,7 +1,10 @@
 from datetime import date, datetime, timedelta
+from tkinter import W
 
 from flask import json
 import random
+
+from wheater import Wheater
 
 
 def create_garden(width, height, path):
@@ -291,6 +294,25 @@ class Garden:
         # Filter the events. We want only events after the given date.
         filter_date = datetime.strptime(date, Utility.date_format)
         final_events = list(filter(lambda e: datetime.strptime(e['date'], Utility.date_format) >= filter_date, consolidated_events))
+
+        # Add weather data to the next 10 days.
+        weather = Wheater()
+        rain = weather.get_rain_prediction()
+        today = datetime.now()
+        day = timedelta(days=1)
+        next_10_days = []
+        for i in range(0, 10):
+            next_10_days.append((today + i*day).strftime(Utility.date_format))
+
+        print(next_10_days)
+
+        for i in range(0, 10):
+            event = final_events[i]
+            print(event['date'])
+
+            for k in range(0, 10):
+                if event['date'] == next_10_days[k]:
+                    event['rain_amount'] = rain[k]
 
         return final_events
 
