@@ -65,6 +65,21 @@ Payload:
 			"state": "suggestion",
 		}
 		
+## POST `/garden/update_plant`
+
+Update the type of a plant. 
+
+Payload: 
+
+		{
+			"location": {
+				"x": 0, 
+				"y": 0, 
+				"z": 0,
+			},
+			"plant": "Zuckermais",
+		}
+		
 		
 ## GET `/garden/actions?date=03.03.2016`
 
