@@ -20,14 +20,14 @@ component('gardenDesigner', {
             var promise = backendService.getPlants();
             promise.then(function (data) {
                 $scope.plants = data;
-                console.log(data);
+                //console.log(data);
             });
 
             $scope.garden = {};
             var promise2 = backendService.getGarden();
             promise2.then(function (data) {
                 $scope.garden = data;
-                console.log($scope.garden.data.tiles);
+                //console.log($scope.garden.data.tiles);
             });
 
             $scope.getImgPath = function (name) {
@@ -77,7 +77,7 @@ component('gardenDesigner', {
 
             $scope.getRowClass = function(event) {
               return event.rowClass;
-            }
+            };
 
             // Date Picker ------------------------------------------------
 
