@@ -18,8 +18,8 @@ def create_garden(width, height, path):
 
     for h in range(0, height):
         row = []
+        plant = plants.get_plant(4)
         for w in range(0, width):
-            plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
             tile = {
                 'state': 'suggestion',
@@ -43,6 +43,10 @@ def create_garden(width, height, path):
     with open(path, 'w') as f:
         json.dump(data, f)
 
+    garden = Garden()
+    garden.add_suggestions()
+    garden.save()
+
 
 class Utility:
 
@@ -50,7 +54,6 @@ class Utility:
 
     @staticmethod
     def dates_collide(start1, end1, start2, end2):
-
 
         start1 = datetime.strptime(start1, Utility.date_format)
         end1 = datetime.strptime(end1, Utility.date_format)
@@ -94,7 +97,21 @@ class Plants:
         if max_duration > 0:
             valid_plants = filter(lambda x: x['duration'] <= max_duration)
 
-        return random.choice(list(valid_plants))
+        valid_plants = list(valid_plants)
+        if len(valid_plants) > 0:
+            return random.choice(valid_plants)
+        else:
+            return None
+
+    def get_follow_plant(self, tile):
+        """
+        Tries to find a plant that follows to the given tile.
+        """
+        harvest_date = tile['crop_date']
+        day, month, year = harvest_date.split('.')
+        month = int(month) + 1
+        return self.get_plant(month)
+
 
     def get_complete_info(self, plant_name):
         valid_plants = filter(lambda x: x['name'] == plant_name, self.plants)
@@ -122,13 +139,22 @@ class Plants:
         crop_day_total = int(day) + plant['duration'] * 7
         crop_day = crop_day_total % 28
         crop_months = int(month) + (crop_day_total - crop_day) / 28
-        crop_date = '%.2d.%.2d.2016' % (crop_day, crop_months)
+        crop_year = 2016
+        if crop_months > 12:
+            crop_year += 1
+            crop_months -= 12
+        crop_date = '%.2d.%.2d.%d' % (crop_day, crop_months, crop_year)
         return crop_date
 
     def get_watering_events(self, plant):
         """
         Get all the watering events.
         """
+
+        # We want the watering events only if it is scheduled.
+        if plant['state'] not in ['scheduled', 'in_progress']:
+            return []
+
         delay_table = {
             'monthly': 28,
             'weekly': 7,
@@ -144,7 +170,7 @@ class Plants:
         while next_watering < end_date:
             events.append({
                 'date': next_watering.strftime(Utility.date_format),
-                'title': 'Water %s' % plant['plant']['name']
+                'title': 'Water %s' % plant['plant']['name'],
             })
 
             next_watering = next_watering + delta
@@ -175,6 +201,27 @@ class Garden:
         """
         return self.data['tiles'][x][y]
 
+    def add_suggestions(self):
+        p = Plants()
+        for x in range(0, len(self.data['tiles'])):
+            row = self.data['tiles'][x]
+            for y in range(0, len(row)):
+                plants = self.data['tiles'][x][y]
+                last_plant = plants[-1]
+
+                # Try to find a plant that grows after this one.
+                follow_plant = p.get_follow_plant(last_plant)
+                if follow_plant is not None:
+                    plant_date, crop_date = p.get_plant_and_crop_date(follow_plant)
+                    self.data['tiles'][x][y].append({
+                        'state': 'suggestion',
+                        'plant_date': plant_date,
+                        'crop_date': crop_date,
+                        'duration': follow_plant['duration'],
+                        'plant': follow_plant
+                    })
+
+
     def generate_events(self, date):
         """
         Generate events based on the current garden.
@@ -189,7 +236,7 @@ class Garden:
                 for tile in plants:
 
                     # Plant event
-                    if tile['proposal']:
+                    if tile['state'] == 'scheduled':
                         # Add a plant event
                         events.append({
                             'date': tile['plant_date'],
@@ -201,7 +248,7 @@ class Garden:
                         })
 
                     # Crop event
-                    if not tile['proposal'] and not tile['cropped']:
+                    if tile['state'] in ['scheduled', 'in_progress', 'ready_to_harvest']:
                         events.append({
                             'date': tile['crop_date'],
                             'title': 'Crop %s' % tile['plant']['name'],

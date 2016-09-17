@@ -60,6 +60,33 @@ def get_events():
     return jsonify(garden.generate_events(date))
 
 
+@app.route('/api/forecast')
+def get_weather_forecast():
+    return jsonify({
+        'weather': [
+            {
+                'sun_prob': 20,
+                'rain_prob': 45
+            },
+            {
+                'sun_prob': 10,
+                'rain_prob': 50
+            },
+            {
+                'sun_prob': 0,
+                'rain_prob': 78
+            },
+            {
+                'sun_prob': 0,
+                'rain_prob': 80
+            },
+            {
+                'sun_prob': 100,
+                'rain_prob': 0
+            },
+        ]
+    })
+
 
 @app.after_request
 def after_request(response):
