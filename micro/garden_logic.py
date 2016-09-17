@@ -143,7 +143,7 @@ class Plants:
         if crop_months > 12:
             crop_year += 1
             crop_months -= 12
-        crop_date = '%.2d.%.2d.%d' % (crop_day, crop_months, crop_year)
+        crop_date = '%.2d.%.2d.%d' % (crop_day + 1, crop_months, crop_year)
         return crop_date
 
     def get_watering_events(self, plant):
