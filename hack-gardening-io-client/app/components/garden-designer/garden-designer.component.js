@@ -50,6 +50,27 @@ component('gardenDesigner', {
                 if (name == 'Weisser Spargel') return "components/img/spargel.png";
             }
 
+            $scope.events = {}
+            var promise3 = backendService.getEvents();
+            promise3.then(function(data) {
+              $scope.events = data;
+              var currentDate = new Date();
+              // ugly af
+              var dateString = currentDate.getFullYear()+ (currentDate.getMonth()+1) + currentDate.getDate();
+              for (plantDate in $scope.events) {
+                if (dateString < plantDate[date].replace('/-','/')){
+                  plantDate[status] = "danger";
+                }
+                else if (dateString = plantDate[date].replace('/-','/')){
+                  plantDate[status] = "success";
+                }
+                else {
+                  plantDate[status] = "";
+                }
+              }
+              console.log(data);
+            });
+
             // Date Picker ------------------------------------------------
 
             $scope.today = function() {

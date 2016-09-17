@@ -17,13 +17,25 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Plants">
+        <uib-tab index="1" heading="Schedule">
             <div class="content-of-tab">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        Basic panel example
-                    </div>
-                </div>
+                <!-- <div class="panel panel-default"> -->
+                    <!-- <div class="panel-body"> -->
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr ng-repeat="row in events.data" class="{{row.status}}">
+                            <td>{{row.date}}</td>
+                            <td>
+                              <div ng-repeat="task in row.tasks">
+                                {{task.title}}
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    <!-- </div> -->
+                <!-- </div> -->
             </div>
         </uib-tab>
     </uib-tabset>
