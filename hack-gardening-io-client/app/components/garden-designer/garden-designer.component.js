@@ -55,21 +55,29 @@ component('gardenDesigner', {
             promise3.then(function(data) {
               $scope.events = data;
               var currentDate = new Date();
-              // ugly af
-              var dateString = currentDate.getFullYear()+ (currentDate.getMonth()+1) + currentDate.getDate();
-              for (plantDate in $scope.events) {
-                if (dateString < plantDate[date].replace('/-','/')){
-                  plantDate[status] = "danger";
+              var dateString = currentDate.toISOString().slice(0,10);
+              console.log($scope.events.data.length);
+              console.log(dateString);
+              for (var i = 0; i < $scope.events.data.length; i++) {
+                if ($scope.events.data[i].date.replace('/-','/') < dateString){
+                  console.log("danger");
+                  $scope.events.data[i].rowClass = "danger";
                 }
-                else if (dateString = plantDate[date].replace('/-','/')){
-                  plantDate[status] = "success";
+                else if ($scope.events.data[i].date.replace('/-','/') == dateString){
+                  console.log("success");
+                  $scope.events.data[i].rowClass = "success";
                 }
                 else {
-                  plantDate[status] = "";
+                  console.log("normal");
+                  $scope.events.data[i].rowClass = "";
                 }
               }
               console.log(data);
             });
+
+            $scope.getRowClass = function(event) {
+              return event.rowClass;
+            }
 
             // Date Picker ------------------------------------------------
 
