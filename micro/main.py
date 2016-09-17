@@ -1,7 +1,7 @@
 import os
 from os import unlink
 
-from flask import Flask
+from flask import Flask, Response
 from flask import request
 from flask import json
 from flask import jsonify
@@ -37,9 +37,33 @@ def get_garden():
         garden_data = json.load(f)
     return jsonify(garden_data)
 
+
 @app.route('/api/garden/plant', methods=['POST'])
 def plant():
-    request
+    payload = request.get_json(force=True)
+    x = payload['location']['x']
+    y = payload['location']['y']
+    plant_name = payload['plant']
+    plant_date = payload['plant_date']
+
+    garden = garden_logic.Garden()
+    garden.plant(x, y, plant_name, plant_date)
+    garden.save()
+
+    return Response(status=200)
+
+@app.route('/api/garden/crop', methods=['POST'])
+def crop():
+    payload = request.get_json(force=True)
+    x = payload['location']['x']
+    y = payload['location']['y']
+    crop_date = payload['crop_date']
+
+    garden = garden_logic.Garden()
+    garden.crop(x, y, crop_date)
+    garden.save()
+
+    return Response(status=200)
 
 
 

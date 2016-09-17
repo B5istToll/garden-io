@@ -17,7 +17,6 @@ def create_garden(width, height, path):
     tiles = []
 
     for h in range(0, height):
-        row = []
         for w in range(0, width):
             plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
@@ -27,13 +26,13 @@ def create_garden(width, height, path):
                     'y': h
                 },
                 'proposal': True,
+                'cropped': False,
                 'plant_date': plant_date,
                 'crop_date': crop_date,
                 'duration': plant['duration'],
                 'plant': plant
             }
-            row.append(tile)
-        tiles.append(row)
+            tiles.append(tile)
 
     data = {
         'size': {
@@ -42,19 +41,12 @@ def create_garden(width, height, path):
         },
         'tiles': tiles
     }
+    print(data)
 
     # Write it to the given path
     with open(path, 'w') as f:
         json.dump(data, f)
 
-
-def update_garden(path, x, y):
-    """
-    Update the given garden with new proposals.
-    X and Y show the location that should be updated.
-    :param path: The path where the garden is stored.
-    """
-    pass
 
 class Utility:
 
@@ -63,10 +55,11 @@ class Utility:
     @staticmethod
     def dates_collide(start1, end1, start2, end2):
 
-        start1 = datetime.strptime(Utility.date_format, start1)
-        end1 = datetime.strptime(Utility.date_format, end1)
-        start2 = datetime.strptime(Utility.date_format, start2)
-        end2 = datetime.strptime(Utility.date_format, end2)
+
+        start1 = datetime.strptime(start1, Utility.date_format)
+        end1 = datetime.strptime(end1, Utility.date_format)
+        start2 = datetime.strptime(start2, Utility.date_format)
+        end2 = datetime.strptime(end2, Utility.date_format)
 
         # Let's order them first
         if start2 > start1:
@@ -85,7 +78,7 @@ class Garden:
     A class to represent a garden.
     """
 
-    def __init__(self, data_path):
+    def __init__(self, data_path='./garden.json'):
         self.data_path = data_path
         with open(data_path) as f:
             self.data = json.load(f)
@@ -119,8 +112,20 @@ class Garden:
                 'plant_date': date,
                 'crop_date': plant_crop_date,
                 'duration': plant_info['duration'],
-                'proposal': False
+                'proposal': False,
+                'cropped': False
             })
+
+    def crop(self, x, y, crop_date):
+        """
+        Crop the currently planted plant at the given location.
+        """
+        relevant_tiles = self.get_tiles(x, y)
+        planted_tile = list(filter(lambda tile: tile['proposal'] == False, relevant_tiles))[0]
+        self.data['tiles'].remove(planted_tile)
+        planted_tile['cropped'] = True
+        planted_tile['crop_date'] = crop_date
+        self.data['tiles'].append(planted_tile)
 
     def get_tiles(self, x, y):
         """
