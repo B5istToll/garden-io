@@ -29,7 +29,7 @@ def create_garden(width, height, path):
                 'duration': plant['duration'],
                 'plant': plant
             }
-            row.append(tile)
+            row.append([tile])
         tiles.append(row)
 
     data = {
