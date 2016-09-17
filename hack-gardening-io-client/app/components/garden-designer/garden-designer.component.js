@@ -50,7 +50,7 @@ component('gardenDesigner', {
                 if (name == 'Weisser Spargel') return "components/img/spargel.png";
             };
 
-            $scope.events = {}
+            $scope.events = {};
             var promise3 = backendService.getEvents();
             promise3.then(function(data) {
               $scope.events = data;
@@ -73,13 +73,10 @@ component('gardenDesigner', {
 
             // Date Picker ------------------------------------------------
 
-            $scope.today = function() {
-                $scope.dt = new Date();
-            };
-            $scope.today();
+            $scope.model = {dt: new Date(2016,0,1,0,0,0,0)};
 
-            $scope.$watch('dt', function () {
-                $rootScope.$emit('dateChanged', $scope.dt);
+            $scope.$watch('model.dt', function () {
+                $rootScope.$emit('dateChanged', $scope.model.dt);
             });
 
             $scope.datepopup = {
@@ -94,18 +91,11 @@ component('gardenDesigner', {
                 //dateDisabled: disabled,
                 formatYear: 'yy',
                 maxDate: new Date(2020, 5, 22),
-                minDate: new Date(),
+                minDate: new Date(2016,0,1),
                 startingDay: 1
             };
 
             $scope.altInputFormats = ['M!/d!/yyyy'];
-
-            function disabled(data) {
-                var date = data.date,
-                    mode = data.mode;
-                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-            }
-
 
             // ------------------------------------------------
 
