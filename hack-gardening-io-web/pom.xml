@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) Schweizerische Bundesbahnen SBB, 2016.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.ws</groupId>
+			<artifactId>j2ee</artifactId>
+			<version>8.5.OM03</version>
+		</dependency>
+	</dependencies>
+
+	<parent>
+		<groupId>hack.gardening.io</groupId>
+		<artifactId>hack-gardening-io-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../hack-gardening-io-parent/pom.xml</relativePath>
+	</parent>
+
+	<groupId>hack.gardening.io</groupId>
+	<artifactId>hack-gardening-io-web</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+
+</project>
