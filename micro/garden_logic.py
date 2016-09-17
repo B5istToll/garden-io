@@ -116,20 +116,18 @@ class Garden:
         })
         new_tiles = Utility.sort_tiles(new_tiles)
 
-
         self.data['tiles'][x][y] = new_tiles
-
 
     def crop(self, x, y, crop_date):
         """
         Crop the currently planted plant at the given location.
         """
-        relevant_tiles = self.get_tiles(x, y)
-        planted_tile = list(filter(lambda tile: tile['proposal'] == False, relevant_tiles))[0]
-        self.data['tiles'].remove(planted_tile)
-        planted_tile['cropped'] = True
-        planted_tile['crop_date'] = crop_date
-        self.data['tiles'].append(planted_tile)
+
+        for tile in self.data['tiles'][x][y]:
+            if not tile['proposal']:
+                tile['cropped'] = True
+                tile['crop_date'] = crop_date
+                break
 
     def get_tiles(self, x, y):
         """
