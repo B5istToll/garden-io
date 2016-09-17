@@ -263,15 +263,15 @@ class Garden:
         # Now we need to consolidate the events such that only one entry per day exists.
         consolidated_events = {}
         for event in events:
-            date = event['date']
-            if date not in consolidated_events:
-                consolidated_events[date] = {
-                    'date': date,
+            d = event['date']
+            if d not in consolidated_events:
+                consolidated_events[d] = {
+                    'date': d,
                     'tasks': []
                 }
 
             # Add the event
-            consolidated_events[date]['tasks'].append({
+            consolidated_events[d]['tasks'].append({
                 'title': event['title'],
                 'location': event['location']
             })
@@ -279,7 +279,11 @@ class Garden:
         consolidated_events = list(consolidated_events.values())
         consolidated_events.sort(key=lambda e: datetime.strptime(e['date'], Utility.date_format))
 
-        return consolidated_events
+        # Filter the events. We want only events after the given date.
+        filter_date = datetime.strptime(date, Utility.date_format)
+        final_events = list(filter(lambda e: datetime.strptime(e['date'], Utility.date_format) >= filter_date, consolidated_events))
+
+        return final_events
 
 
 
