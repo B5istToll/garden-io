@@ -10,8 +10,8 @@ angular.
 module('gardenDesigner').
 component('gardenDesigner', {
     templateUrl: 'components/garden-designer/garden-designer.template.html',
-    controller: ['$scope', 'backendService',
-        function GardenDesignerController($scope, backendService) {
+    controller: ['$scope', '$rootScope', 'backendService',
+        function GardenDesignerController($scope, $rootScope, backendService) {
             $scope.greeting="Blahhhhhhhhhhhhh";
             $scope.controlsMenuTemplate="components/controls-menu/controls-menu.template.html";
             $scope.gardenGridTemplate="components/garden-grid/garden-grid.template.html";
@@ -56,6 +56,10 @@ component('gardenDesigner', {
                 $scope.dt = new Date();
             };
             $scope.today();
+
+            $scope.$watch('dt', function () {
+                $rootScope.$emit('dateChanged', $scope.dt);
+            });
 
             $scope.datepopup = {
                 opened: false

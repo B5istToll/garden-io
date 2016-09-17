@@ -13,7 +13,7 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         templateUrl: 'components/plant-units/plant-unit.template.html',
         controller: 'plantUnitController'
     };
-}).controller('plantUnitController', function ($scope) {
+}).controller('plantUnitController', function ($scope, $rootScope) {
     $scope.plantName = $scope.plantObj.plant.name;
     $scope.plantState = $scope.plantObj.state;
 
@@ -26,22 +26,37 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         $scope.abort = false;
         $scope.seed = false;
         $scope.yield = false;
+        $scope.progressBar = false;
+        $scope.progress = 0;
+        if ($scope.plantState == 'suggestion') {
+            $scope.change = true;
+            $scope.confirm = true;
+        } else if ($scope.plantState == 'scheduled') {
+            if ($scope.currentDate < $scope.seedDate) {
+                $scope.abort = true;
+            } else {
+                $scope.abort = true;
+                $scope.seed = true;
+            }
+        } else if ($scope.plantState == 'in_progress') {
+            $scope.abort = true;
+            $scope.progressBar = true;
+            $scope.progress = ($scope.currentDate - $scope.seedDate) / ($scope.harvestDate - $scope.seedDate);
+        } else if ($scope.plantState = 'ready_to_harvest') {
+            $scope.yield = true;
+        }
     };
     $scope.setFlags();
 
-    if ($scope.plantState == 'suggestion') {
-        $scope.change = true;
-        $scope.confirm = true;
-    } else if ($scope.plantState == 'scheduled') {
-        if ($scope.currentDate < $scope.seedDate) {
-            $scope.abort = true;
-        } else {
-            $scope.abort = true;
-            $scope.seed = true;
-        }
-    } else if ($scope.plantState == 'in_progress') {
-        $scope.abort = true;
-    } else if ($scope.plantState = 'ready_to_harvest') {
-        $scope.yield = true;
-    }
+    $rootScope.$on('dateChanged', function (dt) {
+        $scope.currentDate = dt;
+        $scope.setFlags();
+    });
+    
+    $scope.confirmClicked = function () {
+        $scope.plantState = 'scheduled';
+        $scope.setFlags();
+        // TODO inform backend
+    };
+
 });

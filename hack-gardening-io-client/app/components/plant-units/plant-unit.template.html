@@ -5,11 +5,11 @@
 
     <div id="glyphy-holder">
         <span class="glyphicon glyphicon-transfer" aria-hidden="true" ng-show="change"></span>
-        <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-show="confirm"></span>
+        <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-show="confirm" ng-click="confirmClicked()"></span>
         <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-show="abort"></span>
         <span class="glyphicon glyphicon-cutlery" aria-hidden="true" ng-show="yield"></span>
         <span class="glyphicon glyphicon-leaf" aria-hidden="true" ng-show="seed"></span>
     </div>
 
-    <uib-progressbar value="55" style="width: 80%; display: block; margin-left: auto; margin-right: auto;"></uib-progressbar>
+    <uib-progressbar ng-show="progressBar" value="progress" style="width: 80%; display: block; margin-left: auto; margin-right: auto;"></uib-progressbar>
 </div>
