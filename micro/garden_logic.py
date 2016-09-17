@@ -26,6 +26,7 @@ def create_garden(width, height, path):
                     'y': h
                 },
                 'proposal': True,
+                'cropped': False,
                 'plant_date': plant_date,
                 'crop_date': crop_date,
                 'duration': plant['duration'],
@@ -111,7 +112,8 @@ class Garden:
                 'plant_date': date,
                 'crop_date': plant_crop_date,
                 'duration': plant_info['duration'],
-                'proposal': False
+                'proposal': False,
+                'cropped': False
             })
 
     def get_tiles(self, x, y):
