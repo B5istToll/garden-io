@@ -14,12 +14,12 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         controller: 'plantUnitController'
     };
 }).controller('plantUnitController', function ($scope) {
-    $scope.plantName = plantObj.plant.name;
-    $scope.plantState = plantObj.state;
+    $scope.plantName = $scope.plantObj.plant.name;
+    $scope.plantState = $scope.plantObj.state;
 
-    $scope.seedDate = new Date(plantObj.plant_date);
-    console.log("seed: ",$scope.seedDate);
-    
+    $scope.seedDate = new Date($scope.plantObj.plant_date);
+    $scope.harvestDate = new Date($scope.plantObj.crop_date);
+
     $scope.setFlags = function () {
         $scope.change = false;
         $scope.confirm = false;
@@ -33,9 +33,15 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         $scope.change = true;
         $scope.confirm = true;
     } else if ($scope.plantState == 'scheduled') {
-
+        if ($scope.currentDate < $scope.seedDate) {
+            $scope.abort = true;
+        } else {
+            $scope.abort = true;
+            $scope.seed = true;
+        }
+    } else if ($scope.plantState == 'in_progress') {
         $scope.abort = true;
-    } else if ($scope.plantState == 'scheduled') {
-        $scope.abort = true;
+    } else if ($scope.plantState = 'ready_to_harvest') {
+        $scope.yield = true;
     }
 });
