@@ -53,7 +53,7 @@ def create_garden(width, height, path):
 
 class Utility:
 
-    date_format = '%d.%m.%Y'
+    date_format = '%Y-%m-%d'
 
     @staticmethod
     def dates_collide(start1, end1, start2, end2):
@@ -111,7 +111,7 @@ class Plants:
         Tries to find a plant that follows to the given tile.
         """
         harvest_date = tile['crop_date']
-        day, month, year = harvest_date.split('.')
+        day, month, year = harvest_date.split('-')
         month = int(month) + 1
         return self.get_plant(month)
 
@@ -128,7 +128,7 @@ class Plants:
         """
         plant_day = random.randint(1, 28)
         plant_month = random.choice(plant['plant'])
-        plant_date = '%.2d.%.2d.2016' % (plant_day, plant_month)
+        plant_date = datetime(year=2016, month=int(plant_month), day=int(plant_day)).strftime(Utility.date_format)
 
         crop_date = self.get_crop_date(plant, plant_date)
 
@@ -136,18 +136,18 @@ class Plants:
 
     def get_crop_date(self, plant, plant_date):
 
-        day, month, year = plant_date.split('.')
+        day, month, year = plant_date.split('-')
 
         # Calculate crop date
         crop_day_total = int(day) + plant['duration'] * 7
-        crop_day = crop_day_total % 28
+        crop_day = crop_day_total % 28 + 1
         crop_months = int(month) + (crop_day_total - crop_day) / 28
         crop_year = 2016
         if crop_months > 12:
             crop_year += 1
-            crop_months -= 12
-        crop_date = '%.2d.%.2d.%d' % (crop_day + 1, crop_months, crop_year)
-        return crop_date
+            crop_months = (crop_months % 12) + 1
+        crop_date = datetime(year=int(crop_year), month=int(crop_months), day=int(crop_day))
+        return crop_date.strftime(Utility.date_format)
 
     def get_watering_events(self, plant):
         """
