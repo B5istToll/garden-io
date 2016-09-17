@@ -330,7 +330,7 @@ class Garden:
 
         print(next_10_days)
 
-        for i in range(0, min(10, len(final_events))):
+        for i in range(0, len(final_events)):
             event = final_events[i]
             print(event['date'])
 
