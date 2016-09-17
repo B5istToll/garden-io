@@ -66,6 +66,24 @@ Payload:
 			}
 			"crop_date": "05.05.2016"
 		}
+		
+## GET `/garden/actions?date=03.03.2016`
+
+Get a list of events that the user has to do next. Optionally a date can be given and only events after this event will be returned. The `locations` is an array containing all the tiles that are relevant for this action. 
+
+	{
+		"events": {
+			{
+				"title": "Water plants", 
+				"description": "Short description of what needs to be done.", 
+				"date": "04.03.2016", 
+				"locations": [
+					{ "x": 0, "y": 1}, ...
+				]
+			}, 
+			...
+		}
+	}
 
 ## GET `/plants`
 
