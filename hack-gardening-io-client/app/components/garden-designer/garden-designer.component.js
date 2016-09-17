@@ -20,26 +20,26 @@ component('gardenDesigner', {
             var promise = backendService.getPlants();
             promise.then(function (data) {
                 $scope.plants = data;
-                console.log(data);
+                //console.log(data);
             });
 
             $scope.garden = {};
             var promise2 = backendService.getGarden();
             promise2.then(function (data) {
                 $scope.garden = data;
-                console.log($scope.garden.data.tiles);
+                //console.log($scope.garden.data.tiles);
             });
 
             $scope.getImgPath = function (name) {
                 if (name == 'Brokkoli') return "components/img/brokkoli.png";
                 if (name == 'Rotkohl') return "components/img/rotkohl.png";
                 if (name == 'Kartoffeln') return "components/img/kartoffel.png";
-                if (name == 'Möhren') return "components/img/moehre.png";
+                if (name == 'Moehren') return "components/img/moehre.png";
                 if (name == 'Radieschen') return "components/img/radieschen.png";
                 if (name == 'Rote Beete') return "components/img/rotebeete.png";
                 if (name == 'Feldsalat') return "components/img/feldsalat.png";
                 if (name == 'Auberginen') return "components/img/auberginen.png";
-                if (name == 'Kürbis') return "components/img/kuerbis.png";
+                if (name == 'Kuerbis') return "components/img/kuerbis.png";
                 if (name == 'Zucchini') return "components/img/zucchini.png";
                 if (name == 'Peperoni') return "components/img/peperoni.png";
                 if (name == 'Tomaten') return "components/img/tomaten.png";
@@ -50,7 +50,7 @@ component('gardenDesigner', {
                 if (name == 'Weisser Spargel') return "components/img/spargel.png";
             };
 
-            $scope.events = {}
+            $scope.events = {};
             var promise3 = backendService.getEvents();
             promise3.then(function(data) {
               $scope.events = data;
@@ -74,7 +74,7 @@ component('gardenDesigner', {
 
             $scope.getRowClass = function(event) {
               return event.rowClass;
-            }
+            };
 
             $scope.getRainAmount = function(event) {
               if (event.rain_amount == undefined) {
@@ -87,13 +87,10 @@ component('gardenDesigner', {
 
             // Date Picker ------------------------------------------------
 
-            $scope.today = function() {
-                $scope.dt = new Date();
-            };
-            $scope.today();
+            $scope.model = {dt: new Date(2016,0,1,0,0,0,0)};
 
-            $scope.$watch('dt', function () {
-                $rootScope.$emit('dateChanged', $scope.dt);
+            $scope.$watch('model.dt', function () {
+                $rootScope.$emit('dateChanged', $scope.model.dt);
             });
 
             $scope.datepopup = {
@@ -108,18 +105,11 @@ component('gardenDesigner', {
                 //dateDisabled: disabled,
                 formatYear: 'yy',
                 maxDate: new Date(2020, 5, 22),
-                minDate: new Date(),
+                minDate: new Date(2016,0,1),
                 startingDay: 1
             };
 
             $scope.altInputFormats = ['M!/d!/yyyy'];
-
-            function disabled(data) {
-                var date = data.date,
-                    mode = data.mode;
-                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-            }
-
 
             // ------------------------------------------------
 

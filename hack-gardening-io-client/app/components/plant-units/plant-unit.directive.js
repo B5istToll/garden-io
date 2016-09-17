@@ -32,6 +32,7 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
             $scope.change = true;
             $scope.confirm = true;
         } else if ($scope.plantState == 'scheduled') {
+            console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
             if ($scope.currentDate < $scope.seedDate) {
                 $scope.abort = true;
             } else {
@@ -39,24 +40,38 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
                 $scope.seed = true;
             }
         } else if ($scope.plantState == 'in_progress') {
+            console.log("Dates. Current: ", $scope.currentDate, "  Harvest: ", $scope.harvestDate);
             $scope.abort = true;
             $scope.progressBar = true;
-            $scope.progress = ($scope.currentDate - $scope.seedDate) / ($scope.harvestDate - $scope.seedDate);
+            var daysElapsed = ($scope.currentDate - $scope.seedDate)/1000/60/60/24;
+            var daysToGrow = ($scope.harvestDate - $scope.seedDate)/1000/60/60/24;
+            $scope.progress = daysElapsed/daysToGrow*100;
+            console.log("Fortschritt: ",$scope.progress);
+            console.log("Schon vergangen: ",daysElapsed);
+            console.log("Tage insgesamt: ",daysToGrow);
         } else if ($scope.plantState = 'ready_to_harvest') {
             $scope.yield = true;
         }
     };
     $scope.setFlags();
 
-    $rootScope.$on('dateChanged', function (dt) {
+    $rootScope.$on('dateChanged', function (event, dt) {
         $scope.currentDate = dt;
+        //console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
         $scope.setFlags();
     });
     
     $scope.confirmClicked = function () {
         $scope.plantState = 'scheduled';
         $scope.setFlags();
+        //console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
         // TODO inform backend
     };
+
+    $scope.seedClicked = function () {
+        $scope.plantState = 'in_progress';
+        $scope.setFlags();
+        // TODO inform backend
+    }
 
 });
