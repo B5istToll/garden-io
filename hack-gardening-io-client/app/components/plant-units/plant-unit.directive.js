@@ -6,7 +6,8 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     return {
         restrict: 'E',
         scope: {
-            plantName: '=name'
+            plantName: '=name',
+            imgpath: '=img'
         },
         templateUrl: 'components/plant-units/plant-unit.template.html'
     };
