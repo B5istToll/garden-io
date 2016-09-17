@@ -5,11 +5,17 @@
 }
 
 #options-column {
-  background-color: #00b3ee;
+  margin-left: 5px;
   height: 100vh;
+  background-color: rgba(25, 228, 255, 0.47);
 }
 
 .container {
   padding: 0;
   margin: 0;
+}
+
+.content-of-tab {
+  margin: 10px;
+  font-size: medium;
 }
