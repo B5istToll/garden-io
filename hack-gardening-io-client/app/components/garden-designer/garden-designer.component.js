@@ -50,36 +50,41 @@ component('gardenDesigner', {
                 if (name == 'Weisser Spargel') return "components/img/spargel.png";
             };
 
-            $scope.events = {}
+            $scope.events = {};
             var promise3 = backendService.getEvents();
             promise3.then(function(data) {
               $scope.events = data;
               var currentDate = new Date();
-              // ugly af
-              var dateString = currentDate.getFullYear()+ (currentDate.getMonth()+1) + currentDate.getDate();
-              for (plantDate in $scope.events) {
-                if (dateString < plantDate[date].replace('/-','/')){
-                  plantDate[status] = "danger";
+              var dateString = currentDate.toISOString().slice(0,10);
+              console.log($scope.events.data.length);
+              console.log(dateString);
+              for (var i = 0; i < $scope.events.data.length; i++) {
+                if ($scope.events.data[i].date.replace('/-','/') < dateString){
+                  console.log("danger");
+                  $scope.events.data[i].rowClass = "danger";
                 }
-                else if (dateString = plantDate[date].replace('/-','/')){
-                  plantDate[status] = "success";
+                else if ($scope.events.data[i].date.replace('/-','/') == dateString){
+                  console.log("success");
+                  $scope.events.data[i].rowClass = "success";
                 }
                 else {
-                  plantDate[status] = "";
+                  console.log("normal");
+                  $scope.events.data[i].rowClass = "";
                 }
               }
               console.log(data);
             });
 
+            $scope.getRowClass = function(event) {
+              return event.rowClass;
+            }
+
             // Date Picker ------------------------------------------------
 
-            $scope.today = function() {
-                $scope.dt = new Date();
-            };
-            $scope.today();
+            $scope.model = {dt: new Date(2016,0,1,0,0,0,0)};
 
-            $scope.$watch('dt', function () {
-                $rootScope.$emit('dateChanged', $scope.dt);
+            $scope.$watch('model.dt', function () {
+                $rootScope.$emit('dateChanged', $scope.model.dt);
             });
 
             $scope.datepopup = {
@@ -94,18 +99,11 @@ component('gardenDesigner', {
                 //dateDisabled: disabled,
                 formatYear: 'yy',
                 maxDate: new Date(2020, 5, 22),
-                minDate: new Date(),
+                minDate: new Date(2016,0,1),
                 startingDay: 1
             };
 
             $scope.altInputFormats = ['M!/d!/yyyy'];
-
-            function disabled(data) {
-                var date = data.date,
-                    mode = data.mode;
-                return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-            }
-
 
             // ------------------------------------------------
 

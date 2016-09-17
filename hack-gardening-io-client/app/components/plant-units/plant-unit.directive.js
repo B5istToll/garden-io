@@ -32,6 +32,7 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
             $scope.change = true;
             $scope.confirm = true;
         } else if ($scope.plantState == 'scheduled') {
+            console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
             if ($scope.currentDate < $scope.seedDate) {
                 $scope.abort = true;
             } else {
@@ -48,14 +49,16 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     };
     $scope.setFlags();
 
-    $rootScope.$on('dateChanged', function (dt) {
+    $rootScope.$on('dateChanged', function (event, dt) {
         $scope.currentDate = dt;
+        //console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
         $scope.setFlags();
     });
     
     $scope.confirmClicked = function () {
         $scope.plantState = 'scheduled';
         $scope.setFlags();
+        console.log("Dates. Current: ", $scope.currentDate, "  Seed: ", $scope.seedDate);
         // TODO inform backend
     };
 
