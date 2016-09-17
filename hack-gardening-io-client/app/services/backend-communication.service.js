@@ -3,3 +3,13 @@
  */
 
 
+angular.
+module('gardenDesigner').service('backendService', function ($http, $q) {
+    var deferred = $q.defer();
+    $http.get('http://0.0.0.0:6677/api/plants').then(function (data) {
+        deferred.resolve(data);
+    });
+    this.getPlants = function () {
+        return deferred.promise;
+    }
+});
