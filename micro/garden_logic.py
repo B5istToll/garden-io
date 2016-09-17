@@ -19,10 +19,29 @@ def create_garden(width, height, path):
     # First version selects for each tile a random plant.
     tiles = []
 
+    width1 = random.randint(1, int(width / 2))
+    width2 = random.randint(1, int(width / 2))
+
+    planttl = plants.get_plant(4)
+    planttr = plants.get_plant(4)
+    plantbl = plants.get_plant(4)
+    plantbr = plants.get_plant(4)
+
     for h in range(0, height):
         row = []
-        plant = plants.get_plant(4)
         for w in range(0, width):
+
+            if h < int(height / 2):
+                if w <= width1:
+                    plant = planttl
+                else:
+                    plant = planttr
+            else:
+                if w <= width2:
+                    plant = plantbl
+                else:
+                    plant = plantbr
+
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
             tile = {
                 'state': 'suggestion',
