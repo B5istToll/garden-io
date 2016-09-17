@@ -1,3 +1,4 @@
+import os
 from os import unlink
 
 from flask import Flask
@@ -27,14 +28,19 @@ def get_garden():
 
     new = int(request.args.get('new', 0))
     print(new)
-    if new == 1:
-        print('here')
-        unlink(garden_path)
+    if new == 1 or not os.path.exists(garden_path):
+        if os.path.exists(garden_path):
+            unlink(garden_path)
         garden_logic.create_garden(5, 4, garden_path)
 
     with open(garden_path) as f:
         garden_data = json.load(f)
     return jsonify(garden_data)
+
+@app.route('/api/garden/plant', methods=['POST'])
+def plant():
+    request
+
 
 
 @app.after_request
