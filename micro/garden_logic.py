@@ -25,12 +25,16 @@ def create_garden(width, height, path):
                     'x': w,
                     'y': h
                 },
-                'proposal': True,
-                'cropped': False,
-                'plant_date': plant_date,
-                'crop_date': crop_date,
-                'duration': plant['duration'],
-                'plant': plant
+                'plants': [
+                    {
+                        'proposal': True,
+                        'cropped': False,
+                        'plant_date': plant_date,
+                        'crop_date': crop_date,
+                        'duration': plant['duration'],
+                        'plant': plant
+                    }
+                ]
             }
             tiles.append(tile)
 
@@ -41,7 +45,6 @@ def create_garden(width, height, path):
         },
         'tiles': tiles
     }
-    print(data)
 
     # Write it to the given path
     with open(path, 'w') as f:
