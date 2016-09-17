@@ -43,9 +43,10 @@ public class Application {
                 System.out.println(plantList.get(1).getName());
             }
 
-            else
+            else {
                 System.err.println("Input nicht gefunden");
-            System.exit(0);
+                System.exit(0);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
