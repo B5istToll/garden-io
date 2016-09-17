@@ -37,9 +37,18 @@ def get_garden():
         garden_data = json.load(f)
     return jsonify(garden_data)
 
+
 @app.route('/api/garden/plant', methods=['POST'])
 def plant():
-    request
+    payload = request.get_json(force=True)
+    x = payload['location']['x']
+    y = payload['location']['y']
+    plant_name = payload['plant']
+    plant_date = payload['plant_date']
+
+    garden = garden_logic.Garden()
+    garden.plant(x, y, plant_name, plant_date)
+    garden.save()
 
 
 

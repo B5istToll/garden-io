@@ -17,7 +17,6 @@ def create_garden(width, height, path):
     tiles = []
 
     for h in range(0, height):
-        row = []
         for w in range(0, width):
             plant = plants.get_plant(4)
             (plant_date, crop_date) = plants.get_plant_and_crop_date(plant)
@@ -32,8 +31,7 @@ def create_garden(width, height, path):
                 'duration': plant['duration'],
                 'plant': plant
             }
-            row.append(tile)
-        tiles.append(row)
+            tiles.append(tile)
 
     data = {
         'size': {
@@ -42,19 +40,12 @@ def create_garden(width, height, path):
         },
         'tiles': tiles
     }
+    print(data)
 
     # Write it to the given path
     with open(path, 'w') as f:
         json.dump(data, f)
 
-
-def update_garden(path, x, y):
-    """
-    Update the given garden with new proposals.
-    X and Y show the location that should be updated.
-    :param path: The path where the garden is stored.
-    """
-    pass
 
 class Utility:
 
@@ -85,7 +76,7 @@ class Garden:
     A class to represent a garden.
     """
 
-    def __init__(self, data_path):
+    def __init__(self, data_path='./garden.json'):
         self.data_path = data_path
         with open(data_path) as f:
             self.data = json.load(f)
