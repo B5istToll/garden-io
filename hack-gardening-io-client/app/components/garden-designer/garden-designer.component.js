@@ -26,9 +26,9 @@ component('gardenDesigner', {
             var promise2 = backendService.getGarden();
             promise2.then(function (data) {
                 $scope.garden = data;
-                console.log($scope.garden);
+                console.log($scope.garden.data.tiles);
             });
-            
+
             $scope.getImgPath = function (name) {
                 if (name == 'Brokkoli') return "components/img/brokkoli.png";
                 if (name == 'Rotkohl') return "components/img/rotkohl.png";
