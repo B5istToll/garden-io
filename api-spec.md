@@ -17,15 +17,20 @@ Get the current state of the garden. If a tile is empty there will be no tile ob
                         "x": 0, 
                         "y": 0
                     }, 
-                    "plant": {
-                        "name": "Rhabarber",
-                        "type": "Ausdauernde Gemüsearten"
-                    },
-                    "plant_date": "03.03.2016",
-                    "crop_date": "03.05.2016",
-                    "duration": 8,
-                    "proposal": True,
-                    "cropped": False
+                    "plants": [
+                    	{
+                    		"plant": {
+                       	 		"name": "Rhabarber",
+                        		"type": "Ausdauernde Gemüsearten"
+                    		},
+                    		"plant_date": "03.03.2016",
+                    		"crop_date": "03.05.2016",
+                    		"duration": 8,
+                    		"proposal": True,
+                    		"cropped": False
+                    	}, 
+                    	...
+                    ]
                 }
             ]
         }
