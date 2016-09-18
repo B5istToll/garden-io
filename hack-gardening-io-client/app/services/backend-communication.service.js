@@ -33,7 +33,13 @@ module('gardenDesigner').service('backendService', function ($http, $q) {
     };
 
     this.updatePlant = function (data) {
-        $http.post('http://localhost:6677/api/garden/update_plant', data);
+        var deferred = $q.defer();
+        $http.post('http://localhost:6677/api/garden/update_plant', data).then(
+            function (res) {
+                deferred.resolve(res.data);
+            }
+        );
+        return deferred.promise;
         // TODO post not possible, change backend code
     };
 

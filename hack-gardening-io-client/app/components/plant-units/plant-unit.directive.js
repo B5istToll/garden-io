@@ -17,16 +17,8 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     };
 }).controller('plantUnitController', function ($scope, $rootScope, $uibModal, backendService) {
 
+    var changeRequested;
 
-    $scope.plantName = $scope.plantObj.plant.name;
-    $scope.plantState = $scope.plantObj.state;
-
-    $scope.seedDate = new Date($scope.plantObj.plant_date);
-    $scope.harvestDate = new Date($scope.plantObj.crop_date);
-    
-    $scope.detailPopoverContent =  $scope.seedDate.toISOString().slice(0,10) + ' bis ' + $scope.harvestDate.toISOString().slice(0,10);
-    
-    
     $scope.setFlags = function () {
         $scope.change = false;
         $scope.confirm = false;
@@ -63,7 +55,21 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
             $scope.yield = true;
         }
     };
-    $scope.setFlags();
+
+    $scope.initTile = function () {
+        $scope.plantName = $scope.plantObj.plant.name;
+        $scope.plantState = $scope.plantObj.state;
+
+        $scope.seedDate = new Date($scope.plantObj.plant_date);
+        $scope.harvestDate = new Date($scope.plantObj.crop_date);
+
+        $scope.detailPopoverContent =  $scope.seedDate.toISOString().slice(0,10) + ' bis ' + $scope.harvestDate.toISOString().slice(0,10);
+
+        changeRequested = false;
+
+        $scope.setFlags();
+    };
+    $scope.initTile();
 
     $rootScope.$on('dateChanged', function (event, dt) {
         $scope.currentDate = dt;
@@ -95,19 +101,27 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     };
     
     $scope.changeClicked = function () {
+        changeRequested = true;
         $ctrl.open('sm');
     };
 
     $rootScope.$on('replacementPlant', function (event, plantName) {
-        var data = {
-            location: {
-                x: $scope.posX,
-                y: $scope.posY,
-                z: 0
-            },
-            plant: plantName
-        };
-        backendService.updatePlant(data);
+        if (changeRequested) {
+            var data = {
+                location: {
+                    x: $scope.posX,
+                    y: $scope.posY,
+                    z: 0
+                },
+                plant: plantName
+            };
+            backendService.updatePlant(data).then(function (res) {
+                console.log("Server res: ", res);
+                $scope.plantObj = res;
+                $scope.initTile();
+            });
+        }
+        changeRequested = false;
     });
 
     // Modal ----------------------------------------------------
