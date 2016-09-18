@@ -227,7 +227,8 @@ class Garden:
         self.data['tiles'][x][y][z]['duration'] = plant_info['duration']
 
         for k in range(z+1, len(self.data['tiles'][x][y])):
-            del self.data['tiles'][x][y][k]
+            if k in self.data['tiles'][x][y]:
+                del self.data['tiles'][x][y][k]
 
     def get_tiles(self, x, y):
         """
