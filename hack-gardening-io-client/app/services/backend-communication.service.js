@@ -7,7 +7,7 @@ angular.
 module('gardenDesigner').service('backendService', function ($http, $q) {
     this.getPlants = function () {
         var deferred = $q.defer();
-        $http.get('http://0.0.0.0:6677/api/plants').then(function (data) {
+        $http.get('http://localhost:6677/api/plants').then(function (data) {
             deferred.resolve(data);
         });
         return deferred.promise;
@@ -15,9 +15,32 @@ module('gardenDesigner').service('backendService', function ($http, $q) {
 
     this.getGarden = function () {
         var deferred = $q.defer();
-        $http.get('http://0.0.0.0:6677/api/garden').then(function (data) {
+        $http.get('http://localhost:6677/api/garden').then(function (data) {
             deferred.resolve(data);
         });
         return deferred.promise;
-    }
+    };
+
+    this.getEvents = function() {
+      var deferred = $q.defer();
+      var oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      var isoString = oneWeekAgo.getFullYear()+'-' + (oneWeekAgo.getMonth()+1) + '-'+oneWeekAgo.getDate();//prints expected format.
+      $http.get('http://localhost:6677/api/garden/events?date=' + isoString).then(function (data) {
+          deferred.resolve(data);
+      });
+      return deferred.promise;
+    };
+
+    this.updatePlant = function (data) {
+        var deferred = $q.defer();
+        $http.post('http://localhost:6677/api/garden/update_plant', data).then(
+            function (res) {
+                deferred.resolve(res.data);
+            }
+        );
+        return deferred.promise;
+        // TODO post not possible, change backend code
+    };
+
 });

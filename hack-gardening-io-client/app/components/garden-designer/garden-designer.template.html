@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container" style="width: auto; height: auto">
 
     <div id="main-div" class="row">
         <div id="options-column" class="col-sm-3">
             <div class="column-content" ng-include="controlsMenuTemplate"></div>
         </div>
-        <div id="grid-column" class="col-sm-6">
-            <plant-unit name="garden.data.tiles[0][0].plant.name"></plant-unit>
+        <div id="grid-column" class="col-sm-9">
+          <div class="garden-grid" ng-include="gardenGridTemplate"></div>
+            <!-- <plant-unit name="garden.data.tiles[0][0][0].plant.name" img="getImgPath(garden.data.tiles[0][0][0].plant.name)"></plant-unit> -->
         </div>
-        <div id="info-column" class="col-sm-3">
+        <!-- <div id="info-column" class="col-sm-2"> -->
 
         </div>
     </div>
 </div>
+  

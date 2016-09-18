@@ -1,30 +1,64 @@
 <div>
-    <h1 style="">garden.io</h1>
+<img src="components/img/GartenGuruLogo.png" width="100%" style="display: block; margin-left: auto; margin-right: auto; margin-top: 15px;
+    margin-bottom: 15px;">
+    <p class="input-group" id="date-picker-group">
+        <input type="text" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="model.dt" is-open="datepopup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+    </p>
+
+
     <uib-tabset active="active" justified="true">
         <uib-tab index="0" heading="Garden Profile">
             <div class="content-of-tab">
                 <div class="col-sm-6">
+                  <b>
                     Name:<br>
                     Location:<br>
                     Lenght (m):<br>
                     Width (m):<br>
+                  </b>
                 </div>
                 <div class="col-sm-6">
+                  <b>
                     Eden<br>
                     Zurich<br>
                     {{garden.data.size.height}}<br>
                     {{garden.data.size.width}}<br>
+                  </b>
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Plants">
+        <uib-tab index="1" heading="Schedule">
             <div class="content-of-tab">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        Basic panel example
-                    </div>
+                    <!-- <div class="panel-body"> -->
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr ng-repeat="row in events.data" ng-class="getRowClass(row)">
+                            <td>
+                              <div>
+                                {{row.date}}
+                              </div>
+                            <div>
+                              {{getRainAmount(row)}}
+                            </div></td>
+                            <td>
+                              <div ng-repeat="task in row.tasks">
+                                {{task.title}}
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    <!-- </div> -->
                 </div>
             </div>
         </uib-tab>
     </uib-tabset>
+
+    {{dt | date: 'dd-MM-yyyy'}}
+
 </div>
