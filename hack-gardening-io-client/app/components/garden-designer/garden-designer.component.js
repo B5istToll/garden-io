@@ -60,15 +60,12 @@ component('gardenDesigner', {
               console.log(dateString);
               for (var i = 0; i < $scope.events.data.length; i++) {
                 if ($scope.events.data[i].date.replace('/-','/') < dateString){
-                  console.log("danger");
                   $scope.events.data[i].rowClass = "danger";
                 }
                 else if ($scope.events.data[i].date.replace('/-','/') == dateString){
-                  console.log("success");
                   $scope.events.data[i].rowClass = "success";
                 }
                 else {
-                  console.log("normal");
                   $scope.events.data[i].rowClass = "";
                 }
               }
@@ -78,6 +75,15 @@ component('gardenDesigner', {
             $scope.getRowClass = function(event) {
               return event.rowClass;
             };
+
+            $scope.getRainAmount = function(event) {
+              if (event.rain_amount == undefined) {
+                return "";
+              }
+              else {
+                return event.rain_amount + "mm";
+              }
+            }
 
             // Date Picker ------------------------------------------------
 
