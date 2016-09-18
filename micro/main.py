@@ -63,9 +63,11 @@ def update_plant():
 
     garden = garden_logic.Garden()
     garden.update_plant(x, y, z, plant)
+    garden.add_suggestions()
     garden.save()
 
-    return Response(status=200)
+    return jsonify(garden.data['tiles'][x][y][z])
+
 
 @app.route('/api/garden/events')
 def get_events():

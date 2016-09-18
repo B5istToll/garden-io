@@ -222,6 +222,13 @@ class Garden:
         plant_info = plants.get_complete_info(new_plant)
         self.data['tiles'][x][y][z]['plant'] = plant_info
 
+        crop_date = plants.get_crop_date(plant_info, self.data['tiles'][x][y][z]['plant_date'])
+        self.data['tiles'][x][y][z]['crop_date'] = crop_date
+        self.data['tiles'][x][y][z]['duration'] = plant_info['duration']
+
+        for k in range(z+1, len(self.data['tiles'][x][y])):
+            del self.data['tiles'][x][y][k]
+
     def get_tiles(self, x, y):
         """
         Get all tiles with a specific location.
@@ -330,7 +337,7 @@ class Garden:
 
         print(next_10_days)
 
-        for i in range(0, min(10, len(final_events))):
+        for i in range(0, len(final_events)):
             event = final_events[i]
             print(event['date'])
 

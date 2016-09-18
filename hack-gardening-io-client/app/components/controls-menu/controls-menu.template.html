@@ -1,12 +1,13 @@
 <div>
-    <h1 style="">garden.io</h1>
-
+<img src="components/img/GartenGuruLogo.png" width="100%" style="display: block; margin-left: auto; margin-right: auto; margin-top: 15px;
+    margin-bottom: 15px;">
     <p class="input-group" id="date-picker-group">
         <input type="text" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="model.dt" is-open="datepopup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
     </p>
+
 
     <uib-tabset active="active" justified="true">
         <uib-tab index="0" heading="Garden Profile">
