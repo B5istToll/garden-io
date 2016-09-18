@@ -12,6 +12,7 @@
     </div>
 
     <uib-progressbar ng-show="progressBar" value="progress" style="width: 80%; display: block; margin-left: auto; margin-right: auto;"></uib-progressbar>
+<<<<<<< HEAD
 </div>
 
 <script type="text/ng-template" id="myModalContent.html">
@@ -37,3 +38,6 @@
         <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
     </div>
 </script>
+=======
+</div>
+>>>>>>> feature-backend
