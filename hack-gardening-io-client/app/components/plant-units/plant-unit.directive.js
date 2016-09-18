@@ -20,7 +20,7 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     $scope.seedDate = new Date($scope.plantObj.plant_date);
     $scope.harvestDate = new Date($scope.plantObj.crop_date);
     
-    $scope.detailPopoverContent = 'Seed Date: ' + $scope.seedDate.toISOString().slice(0,10) + 'Harvest Date: ' + $scope.harvestDate.toISOString().slice(0,10);
+    $scope.detailPopoverContent =  $scope.seedDate.toISOString().slice(0,10) + ' bis ' + $scope.harvestDate.toISOString().slice(0,10);
     
     
     $scope.setFlags = function () {
