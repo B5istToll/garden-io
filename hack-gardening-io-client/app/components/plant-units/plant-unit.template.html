@@ -24,16 +24,9 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4>{{item.name}}</h4>
+                        <img ng-src="{{getImgPath(item.name)}}" width="70%" style="display: block; margin-left: auto; margin-right: auto;" ng-click="$event.preventDefault(); $ctrl.selected.item = item; $ctrl.ok()">
                     </div>
                 </div>
-
-                <!--<a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>-->
             </div>
-
-        Selected: <b>{{ $ctrl.selected.item }}</b>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
     </div>
 </script>

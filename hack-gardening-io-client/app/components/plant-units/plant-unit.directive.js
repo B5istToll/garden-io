@@ -8,12 +8,16 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         scope: {
             plantObj: '=plant',
             imgpath: '=img',
-            currentDate: '=date'
+            currentDate: '=date',
+            posX: '=x',
+            posY: '=y'
         },
         templateUrl: 'components/plant-units/plant-unit.template.html',
         controller: 'plantUnitController'
     };
 }).controller('plantUnitController', function ($scope, $rootScope, $uibModal, backendService) {
+
+
     $scope.plantName = $scope.plantObj.plant.name;
     $scope.plantState = $scope.plantObj.state;
 
@@ -91,9 +95,20 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
     };
     
     $scope.changeClicked = function () {
-        $ctrl.open();
+        $ctrl.open('sm');
     };
 
+    $rootScope.$on('replacementPlant', function (event, plantName) {
+        var data = {
+            location: {
+                x: $scope.posX,
+                y: $scope.posY,
+                z: 0
+            },
+            plant: plantName
+        };
+        backendService.updatePlant(data);
+    });
 
     // Modal ----------------------------------------------------
 
@@ -106,7 +121,6 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
         //console.log("dara: ", data);
         $ctrl.items = $scope.plants.data.plants;
     });
-
 
 
     $ctrl.animationsEnabled = true;
@@ -136,7 +150,7 @@ angular.module('gardenDesigner').directive('plantUnit', function () {
 
 });
 
-angular.module('gardenDesigner').controller('plantModalCtrl', function ($uibModalInstance, items) {
+angular.module('gardenDesigner').controller('plantModalCtrl', function ($uibModalInstance, items, $scope, $rootScope) {
     var $ctrl = this;
     $ctrl.items = items;
     $ctrl.selected = {
@@ -144,6 +158,7 @@ angular.module('gardenDesigner').controller('plantModalCtrl', function ($uibModa
     };
 
     $ctrl.ok = function () {
+        $rootScope.$emit('replacementPlant',$ctrl.selected.item.name);
         $uibModalInstance.close($ctrl.selected.item);
     };
 
